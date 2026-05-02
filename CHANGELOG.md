@@ -2,6 +2,13 @@
 
 All notable changes to AskProof will be documented in this file.
 
+## [0.1.3] - 2026-05-02
+
+### Fixed
+
+- Confirmed remote `main` and `v0.1.2` tag point to the multi-line Markdown commit.
+- Added visible language switching between English and Chinese README files.
+
 ## [0.1.2] - 2026-05-02
 
 ### Fixed

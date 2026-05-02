@@ -1,3 +1,5 @@
+🌐 Languages: [English](README.md) | [中文](README.zh-CN.md)
+
 # AskProof
 
 **Don’t just ask AI to continue. Ask for proof.**

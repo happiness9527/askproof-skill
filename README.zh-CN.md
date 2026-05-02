@@ -1,3 +1,5 @@
+🌐 语言： [English](README.md) | [中文](README.zh-CN.md)
+
 # AskProof｜AI验收官
 
 **别只让 AI 继续，先让它拿出证据。**
