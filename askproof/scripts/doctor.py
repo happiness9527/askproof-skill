@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import fnmatch
+import re
 import sys
 from pathlib import Path
+from urllib.parse import unquote
 
 
 REQUIRED_PATHS = [
@@ -51,6 +53,7 @@ REQUIRED_PATHS = [
     "askproof/scripts/update_index.py",
     "askproof/scripts/doctor.py",
     "docs/install.md",
+    "docs/install-for-non-engineers.md",
     "docs/quick-start-for-non-engineers.md",
     "docs/acceptance-checklist.md",
     "docs/prompt-library.md",
@@ -87,6 +90,30 @@ SECRET_MARKERS = [
     "GITHUB" + "_TOKEN=",
     "OPENAI" + "_API_KEY=",
     "ANTHROPIC" + "_API_KEY=",
+]
+
+SKILL_FRONTMATTER = [
+    "---",
+    "name: askproof",
+    "description: Use this skill when a non-engineer needs to ask AI agents for proof, check whether “done” is actually verified, rewrite vague feedback such as “still broken” into actionable prompts, request minimum evidence, prevent task drift, or create handoff memory.",
+    "metadata:",
+    "  short-description: Help non-engineers ask AI agents for proof before trusting “done”.",
+    "---",
+]
+
+MARKDOWN_FORMAT_PATHS = [
+    "README.md",
+    "README.zh-CN.md",
+    "askproof/SKILL.md",
+    "docs/install.md",
+    "docs/roadmap.md",
+    "docs/example-gallery.md",
+]
+
+LINK_CHECK_PATHS = [
+    "README.md",
+    "README.zh-CN.md",
+    "docs/example-gallery.md",
 ]
 
 
@@ -139,6 +166,76 @@ def check_secret_markers(root: Path) -> list[str]:
     return problems
 
 
+def markdown_paths_to_check(root: Path) -> list[Path]:
+    paths = [root / relative for relative in MARKDOWN_FORMAT_PATHS]
+    paths.extend(sorted((root / "askproof" / "references").glob("*.md")))
+    paths.extend(sorted((root / "askproof" / "examples").glob("*.md")))
+    return paths
+
+
+def check_markdown_multiline(root: Path) -> list[str]:
+    problems: list[str] = []
+    for path in markdown_paths_to_check(root):
+        if not path.exists():
+            continue
+        lines = path.read_text(encoding="utf-8").splitlines()
+        if len(lines) <= 1:
+            problems.append(f"Markdown file appears compressed into one line: {path.relative_to(root).as_posix()}")
+    return problems
+
+
+def check_skill_frontmatter(root: Path) -> list[str]:
+    path = root / "askproof" / "SKILL.md"
+    if not path.exists():
+        return ["Missing askproof/SKILL.md"]
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if lines[: len(SKILL_FRONTMATTER)] != SKILL_FRONTMATTER:
+        return ["askproof/SKILL.md frontmatter does not match the required standard YAML block"]
+    if len(lines) <= len(SKILL_FRONTMATTER) or lines[len(SKILL_FRONTMATTER)].strip() != "":
+        return ["askproof/SKILL.md must have a blank line between frontmatter and # AskProof"]
+    if len(lines) <= len(SKILL_FRONTMATTER) + 1 or lines[len(SKILL_FRONTMATTER) + 1].strip() != "# AskProof":
+        return ["askproof/SKILL.md body must start with # AskProof after frontmatter"]
+    return []
+
+
+def check_markdown_links(root: Path) -> list[str]:
+    problems: list[str] = []
+    pattern = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
+    for relative in LINK_CHECK_PATHS:
+        path = root / relative
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        for match in pattern.finditer(text):
+            target = match.group(1).strip()
+            if not target or target.startswith(("#", "http://", "https://", "mailto:")):
+                continue
+            target = target.split("#", 1)[0]
+            target = unquote(target)
+            target_path = (path.parent / target).resolve()
+            try:
+                target_path.relative_to(root)
+            except ValueError:
+                problems.append(f"Markdown link escapes repository in {relative}: {match.group(1)}")
+                continue
+            if not target_path.exists():
+                problems.append(f"Broken Markdown link in {relative}: {match.group(1)}")
+    return problems
+
+
+def check_skill_references(root: Path) -> list[str]:
+    problems: list[str] = []
+    path = root / "askproof" / "SKILL.md"
+    if not path.exists():
+        return ["Missing askproof/SKILL.md"]
+    text = path.read_text(encoding="utf-8")
+    for reference in sorted(set(re.findall(r"`(references/[^`]+\.md)`", text))):
+        target = root / "askproof" / reference
+        if not target.exists():
+            problems.append(f"SKILL.md references missing file: {reference}")
+    return problems
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".", help="Repository root. Default: current directory.")
@@ -153,6 +250,10 @@ def main() -> int:
     problems.extend(check_gitignore(root))
     problems.extend(check_forbidden_files(root))
     problems.extend(check_secret_markers(root))
+    problems.extend(check_markdown_multiline(root))
+    problems.extend(check_skill_frontmatter(root))
+    problems.extend(check_markdown_links(root))
+    problems.extend(check_skill_references(root))
 
     if problems:
         print("AskProof doctor found problems:\n")

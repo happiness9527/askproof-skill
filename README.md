@@ -8,6 +8,9 @@ But if you are not an engineer, how do you know whether it is actually done?
 
 AskProof helps non-engineers check what the AI did, what evidence is missing, what is still unverified, and what to ask next.
 
+AI agents summarize what they did.
+AskProof helps you decide whether you can trust it.
+
 AskProof does not ask you to become an engineer. It gives you better acceptance questions.
 
 ## What Is AskProof
@@ -266,6 +269,8 @@ For Codex-style local skills, copy the `askproof/` directory into your skills di
 
 See [docs/install.md](docs/install.md) for step-by-step instructions.
 
+If you do not use Git, see [docs/install-for-non-engineers.md](docs/install-for-non-engineers.md).
+
 ## Roadmap
 
 See [docs/roadmap.md](docs/roadmap.md).
@@ -283,3 +288,7 @@ It does not include integrations, a UI, background services, PR bots, or automat
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Star
+
+If AskProof helps you avoid blindly trusting “done”, consider starring the repo so more non-engineers can find it.

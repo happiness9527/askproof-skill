@@ -2,6 +2,8 @@
 
 AskProof V0.1 is a local Skill project. It does not require a server, API key, database, or external integration.
 
+If you do not use GitHub or do not know where your AI tool stores Skills, use [Install AskProof For Non-Engineers](install-for-non-engineers.md).
+
 ## Install For A Codex-Style Skill Environment
 
 1. Download or clone this repository.
@@ -40,4 +42,3 @@ AskProof V0.1 does not include:
 - CI bot
 - automatic test executor
 - automatic GitHub release publishing
-

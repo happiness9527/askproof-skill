@@ -2,16 +2,23 @@
 
 All notable changes to AskProof will be documented in this file.
 
-## [Unreleased]
+## [0.1.1] - 2026-05-02
 
 ### Added
 
 - Skill UI metadata in `askproof/agents/openai.yaml`.
 - AI acceptance checklist and copy-ready prompt library for non-engineers.
 - Drift Guard example for scope expansion before verification.
+- Non-engineer ZIP installation guide in `docs/install-for-non-engineers.md`.
 - Platform-specific Done Check examples for Cursor, Claude Code, Codex, and domestic agent platforms.
 - Role-specific Prompt Rescue templates for product managers, designers, operations, and content creators.
 - Example gallery documentation linking the new fictional scenarios.
+
+### Fixed
+
+- Standardized and guarded multi-line Markdown formatting for key README, Skill, reference, example, and docs files.
+- Confirmed `askproof/SKILL.md` uses standard multi-line YAML frontmatter.
+- Added `doctor.py` checks for broken README/gallery links and missing Skill reference files.
 
 ## [0.1.0] - 2026-05-02
 

@@ -8,6 +8,9 @@ AI 经常说“已经完成”“已经修复”“现在应该可以了”。
 
 AskProof 帮你看懂 AI 做了什么、缺少哪些证据、哪里还没验证，以及下一句该怎么问 AI。
 
+AI 会总结自己做了什么。
+AskProof 帮你判断这件事能不能信。
+
 AskProof 不替 AI 做事，而是帮你验收 AI、追问 AI、避免被 AI 带着跑。
 
 ## AskProof 是什么
@@ -283,6 +286,8 @@ AskProof 不会只说“请提供日志”。
 
 详细步骤见 [docs/install.md](docs/install.md)。
 
+如果你不会使用 GitHub 或不知道 Skill 目录在哪里，见 [docs/install-for-non-engineers.md](docs/install-for-non-engineers.md)。
+
 ## 路线图
 
 见 [docs/roadmap.md](docs/roadmap.md)。
@@ -300,3 +305,7 @@ V0.1 只聚焦：
 ## 开源协议
 
 MIT。见 [LICENSE](LICENSE)。
+
+## Star
+
+如果 AskProof 帮你少说一次“继续修”，多问一次“证据是什么”，欢迎给这个项目一个 Star，让更多非工程师看到它。
