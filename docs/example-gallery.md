@@ -41,6 +41,19 @@ Acceptance focus:
 - Does the command prove the original user-facing issue?
 - Or does it only prove syntax, formatting, or a narrow technical condition?
 
+### Same-Agent Verification
+
+Use when Claude Code, Codex, or another current agent can inspect the repository and the user asks
+whether the feature is actually verified in the current project.
+
+Read: [Same-Agent Verification Example](../askproof/examples/same-agent-verification-example.md)
+
+Acceptance focus:
+
+- Does the current agent find implementation evidence only?
+- Is there runtime, visual, user acceptance, or reproducible evidence?
+- What is the minimum acceptance path before expanding scope?
+
 ### Domestic Agent Platform
 
 Use when a domestic AI agent platform says “已修复并重新部署”.

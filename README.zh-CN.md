@@ -65,6 +65,7 @@ AskProof 帮你判断这件事能不能信。
 - [你为什么需要 AskProof](#你为什么需要-askproof)
 - [AskProof 能帮你做什么](#askproof-能帮你做什么)
 - [适合谁使用](#适合谁使用)
+- [V0.2 核心体验增强](#v02-核心体验增强)
 - [不安装也能先试](#不安装也能先试)
 - [让 Claude Code / Codex 帮你安装](#让-claude-code--codex-帮你安装)
 - [核心功能](#核心功能)
@@ -129,6 +130,18 @@ AskProof 适合正在用 AI 工具做事、但不一定懂工程细节的人：
 - 使用 Claude Code、Codex、Cursor、OpenClaw、国内 Agent 平台或其他 AI 工具的人
 
 即使你不会看日志、不会跑测试、不会看 diff，也可以用 AskProof 让 AI 先把证据说清楚。
+
+## V0.2 核心体验增强
+
+AskProof V0.2 不新增前端、不做集成、不做自动测试执行器，而是强化一次完整 AI 验收体验。
+
+- **Acceptance Brief｜验收简报**：把 AI 的“已完成”整理成当前问题、完成声明、已确认事实、已有证据、
+  缺失证据、可信度、当前状态和下一步动作。
+- **Evidence Type｜证据类型**：区分代码证据、日志证据、视觉证据、用户验收证据和可复现证据。
+- **Same-Agent Verification Mode｜同一 Agent 自检模式**：当 Claude Code、Codex 或当前 Agent 能查看项目时，
+  先检查已有项目证据，而不是只让用户提供日志。
+- **自包含追问 Prompt**：下一句 Prompt 必须包含功能名、验收目标、需要的证据类型，以及“未验证前不要扩功能”。
+- **Minimum Acceptance Path｜最小验收路径**：告诉用户最小应该打开哪里、看什么、什么算通过、失败后发什么给 AI。
 
 ## 不安装也能先试
 
@@ -479,6 +492,14 @@ V0.1 只聚焦：
 - 轻量本地 memory 辅助脚本。
 
 暂不做前端 UI、飞书/Notion/Slack 集成、后台守护进程、PR Review Bot、自动测试执行器或自动发布。
+
+V0.2 聚焦结构化验收：
+
+- AskProof Acceptance Brief；
+- Evidence Type 证据类型；
+- Same-Agent Verification Mode 同一 Agent 自检模式；
+- 自包含追问 Prompt；
+- Minimum Acceptance Path 最小验收路径。
 
 ## 开源协议
 

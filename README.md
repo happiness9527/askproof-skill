@@ -63,6 +63,7 @@ Please do not continue building new features yet. First explain what you changed
 - [Why You Need AskProof](#why-you-need-askproof)
 - [What AskProof Helps You Do](#what-askproof-helps-you-do)
 - [Who It Is For](#who-it-is-for)
+- [V0.2 Core Experience Enhancements](#v02-core-experience-enhancements)
 - [Try It in 30 Seconds](#try-it-in-30-seconds)
 - [Try It Without Installing](#try-it-without-installing)
 - [Ask Claude Code / Codex To Install It](#ask-claude-code--codex-to-install-it)
@@ -129,6 +130,21 @@ AskProof is built for people using AI agents without being professional develope
 
 You can use AskProof even if you do not know how to read logs, run tests, inspect diffs, or explain
 technical errors.
+
+## V0.2 Core Experience Enhancements
+
+AskProof V0.2 strengthens the acceptance workflow without adding a UI, integrations, or an
+automatic test runner.
+
+- **Acceptance Brief**: turns a “done” claim into a structured acceptance result with confirmed
+  facts, existing evidence, missing evidence, confidence, status, and next action.
+- **Evidence Type**: labels proof as code evidence, log evidence, visual evidence, user acceptance
+  evidence, or reproducible evidence.
+- **Same-Agent Verification Mode**: helps Claude Code, Codex, or another current agent inspect
+  local project evidence instead of only asking the user for logs.
+- **Self-contained follow-up prompts**: includes the feature name, target, evidence needed, and a
+  stop condition before expanding scope.
+- **Minimum Acceptance Path**: gives the smallest practical path to verify the current result.
 
 ## Try It Without Installing
 
@@ -472,6 +488,14 @@ V0.1 focuses on:
 - lightweight local memory helpers
 
 It does not include integrations, a UI, background services, PR bots, or automatic test execution.
+
+V0.2 focuses on structured acceptance:
+
+- AskProof Acceptance Brief
+- Evidence Type classification
+- Same-Agent Verification Mode
+- self-contained follow-up prompts
+- Minimum Acceptance Path
 
 ## License
 

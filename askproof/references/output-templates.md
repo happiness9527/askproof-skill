@@ -32,25 +32,91 @@ AI 当前说法是否可信：
 <one sentence>
 ```
 
+## AskProof Acceptance Brief
+
+Use this for Done Check, Same-Agent Verification Mode, or any situation where the user needs a
+structured acceptance result rather than a loose summary.
+
+```text
+AskProof Acceptance Brief
+
+1. 当前问题
+<用户真正想确认的问题>
+
+2. AI 的完成声明
+<AI 声称完成、修复或应该可用的原话>
+
+3. 已确认事实
+- <已经能确认的事实>
+
+4. 已有证据
+- <证据内容>（证据类型：L1 / L2 / L3 / L4 / L5）
+
+5. 缺失证据
+- <缺少的证据>（建议补充证据类型：L1 / L2 / L3 / L4 / L5）
+
+6. 完成可信度：低 / 中 / 高
+<一句话说明原因>
+
+7. 当前状态：已修改 / 部分验证 / 已验证 / 不建议继续
+<一句话说明为什么>
+
+8. 最小验收动作
+<最小验收路径或下一步检查>
+
+9. 下一句该怎么问 AI
+<自包含 Prompt>
+```
+
 ## Done Check Template
 
 ```text
 当前判断：Done Check｜完成验收
 完成可信度：低 / 中 / 高
-当前状态：已修改 / 已验证 / 未验证 / 有风险 / 可继续 / 不建议继续
+当前状态：已修改 / 部分验证 / 已验证 / 不建议继续
 
 AI 提供的证据：
-- <evidence or “暂无明确证据”>
+- <evidence or “暂无明确证据”>（证据类型：L1 / L2 / L3 / L4 / L5）
 
 缺少的证据：
-- <missing proof>
+- <missing proof>（建议补充证据类型：L1 / L2 / L3 / L4 / L5）
 
-用户应该如何验收：
-1. <simple check>
-2. <simple check>
+最小验收动作：
+1. <打开页面或执行命令>
+2. <观察功能点>
+3. <保存证据>
 
 你现在最应该问 AI 的一句话：
-请先不要继续扩展。请说明你改了什么、如何验证、验证结果是什么，以及还有哪些内容没有验证。
+请先不要继续扩展。请针对 [具体功能名] 说明你改了什么、已有哪类证据、缺少哪类证据、如何最小验证，以及还有哪些内容没有验证。
+```
+
+## Same-Agent Verification Template
+
+```text
+当前判断：Same-Agent Verification Mode｜同一 Agent 自检模式
+
+当前问题：
+<用户要验收的功能或修复>
+
+我能检查的现有证据：
+- 实现证据：<commit / diff / 文件实现 / 未发现>
+- 运行证据：<日志 / 测试输出 / 截图 / 录屏 / 用户验收 / 未发现>
+
+证据类型判断：
+- 已有：<L1 / L2 / L3 / L4 / L5>
+- 缺少：<L1 / L2 / L3 / L4 / L5>
+
+当前状态：
+已修改 / 部分验证 / 已验证 / 不建议继续
+
+限制：
+- <无法运行、无法看视频、缺少依赖等限制；没有限制则写“暂无明显限制”>
+
+最小验收动作：
+<使用 Minimum Acceptance Path>
+
+你现在最应该问 AI 的一句话：
+<自包含 Prompt>
 ```
 
 ## Prompt Rescue Template
@@ -69,6 +135,32 @@ AI 提供的证据：
 
 你现在最应该问 AI 的一句话：
 <copy-ready prompt>
+```
+
+## Minimum Acceptance Path
+
+Use this when the user needs a concrete way to accept the result.
+
+```text
+Minimum Acceptance Path｜最小验收路径
+
+1. 打开什么页面 / 执行什么命令：
+<page or command>
+
+2. 观察哪个功能点：
+<specific behavior>
+
+3. 什么现象算通过：
+<pass condition>
+
+4. 什么现象算失败：
+<fail condition>
+
+5. 需要保存什么证据：
+<screenshot / recording / log / test output / user confirmation>
+
+6. 失败后应该把什么发给 AI：
+<minimum evidence to send back>
 ```
 
 ## Evidence Ladder Template
@@ -164,4 +256,3 @@ AI 在说什么：
 你现在最应该问 AI 的一句话：
 请根据这份交接继续，先验证未验证内容，不要直接扩展新功能。
 ```
-
