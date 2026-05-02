@@ -1,8 +1,10 @@
 # Acceptance Checklists
 
-Use these checklists when a non-engineer asks “can I trust this?” or “what should I check before continuing?”
+Use these checklists when a non-engineer asks “can I trust this?” or “what should I check before
+continuing?”
 
-Keep the checklist short. The user should be able to copy one prompt or perform one simple acceptance action.
+Keep the checklist short. The user should be able to copy one prompt or perform one simple
+acceptance action.
 
 ## Done Claim Checklist
 

@@ -1,6 +1,7 @@
 # Example Gallery
 
-This gallery collects realistic but fictional AskProof scenarios. It is designed for non-engineers who use AI agents but do not want to learn technical verification language.
+This gallery collects realistic but fictional AskProof scenarios. It is designed for non-engineers
+who use AI agents but do not want to learn technical verification language.
 
 ## Platform Done Check Examples
 
@@ -44,7 +45,8 @@ Acceptance focus:
 
 Use when a domestic AI agent platform says “已修复并重新部署”.
 
-Read: [Domestic Agent Platform Done Check Example](../askproof/examples/domestic-agent-done-check-example.md)
+Read: [Domestic Agent Platform Done Check
+Example](../askproof/examples/domestic-agent-done-check-example.md)
 
 Acceptance focus:
 

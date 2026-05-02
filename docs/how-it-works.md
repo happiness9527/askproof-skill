@@ -28,7 +28,8 @@ It separates:
 
 AskProof does not start with “send logs”.
 
-It asks for the easiest evidence the user can provide, such as a screenshot, AI last reply, red error line, or plain-language symptom.
+It asks for the easiest evidence the user can provide, such as a screenshot, AI last reply, red
+error line, or plain-language symptom.
 
 ## 4. Produce The Next Prompt
 

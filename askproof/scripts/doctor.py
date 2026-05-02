@@ -104,10 +104,8 @@ SKILL_FRONTMATTER = [
 MARKDOWN_FORMAT_PATHS = [
     "README.md",
     "README.zh-CN.md",
+    "CHANGELOG.md",
     "askproof/SKILL.md",
-    "docs/install.md",
-    "docs/roadmap.md",
-    "docs/example-gallery.md",
 ]
 
 LINK_CHECK_PATHS = [
@@ -168,20 +166,58 @@ def check_secret_markers(root: Path) -> list[str]:
 
 def markdown_paths_to_check(root: Path) -> list[Path]:
     paths = [root / relative for relative in MARKDOWN_FORMAT_PATHS]
+    paths.extend(sorted((root / "docs").glob("*.md")))
     paths.extend(sorted((root / "askproof" / "references").glob("*.md")))
     paths.extend(sorted((root / "askproof" / "examples").glob("*.md")))
-    return paths
+    return sorted(set(paths))
 
 
-def check_markdown_multiline(root: Path) -> list[str]:
+def check_markdown_format(root: Path) -> tuple[list[str], list[str]]:
     problems: list[str] = []
+    warnings: list[str] = []
     for path in markdown_paths_to_check(root):
         if not path.exists():
             continue
-        lines = path.read_text(encoding="utf-8").splitlines()
+        relative = path.relative_to(root).as_posix()
+        text = path.read_text(encoding="utf-8")
+        lines = text.splitlines()
         if len(lines) <= 1:
-            problems.append(f"Markdown file appears compressed into one line: {path.relative_to(root).as_posix()}")
-    return problems
+            problems.append(f"{relative}:1 Markdown file appears compressed into one line")
+        if len(lines) < 10 and len(text) > 1000:
+            problems.append(f"{relative}:1 Markdown file has only {len(lines)} lines but {len(text)} characters")
+
+        in_code_block = False
+        for line_number, line in enumerate(lines, start=1):
+            stripped = line.strip()
+            if stripped.startswith("```"):
+                in_code_block = not in_code_block
+                continue
+
+            line_length = len(line)
+            if line_length > 1000:
+                problems.append(f"{relative}:{line_number} line is {line_length} characters; compressed Markdown must be split")
+            elif line_length > 500:
+                warnings.append(f"{relative}:{line_number} line is {line_length} characters; consider splitting it")
+
+            if in_code_block:
+                continue
+
+            if stripped.startswith("#"):
+                if not re.match(r"^#{1,6}(\s+\S.*)?$", stripped):
+                    problems.append(f"{relative}:{line_number} malformed Markdown heading")
+                if re.search(r"\s#{1,6}\s+\S", stripped):
+                    problems.append(f"{relative}:{line_number} appears to contain multiple headings on one line")
+                if re.search(r"\s(```|>\s+)", stripped):
+                    problems.append(f"{relative}:{line_number} heading appears to include body/list content on the same line")
+                if "**" in stripped and len(stripped) > 40:
+                    problems.append(f"{relative}:{line_number} heading appears to include emphasized body text on the same line")
+
+            if re.match(r"^\s*[-*]\s+", line) and re.search(r"\s[-*]\s+\S", line.strip()[2:]):
+                problems.append(f"{relative}:{line_number} list items appear compressed onto one line")
+            if re.match(r"^\s*\d+\.\s+", line) and re.search(r"\s\d+\.\s+\S", line.strip()[3:]):
+                problems.append(f"{relative}:{line_number} ordered list items appear compressed onto one line")
+
+    return problems, warnings
 
 
 def check_skill_frontmatter(root: Path) -> list[str]:
@@ -189,13 +225,28 @@ def check_skill_frontmatter(root: Path) -> list[str]:
     if not path.exists():
         return ["Missing askproof/SKILL.md"]
     lines = path.read_text(encoding="utf-8").splitlines()
-    if lines[: len(SKILL_FRONTMATTER)] != SKILL_FRONTMATTER:
-        return ["askproof/SKILL.md frontmatter does not match the required standard YAML block"]
-    if len(lines) <= len(SKILL_FRONTMATTER) or lines[len(SKILL_FRONTMATTER)].strip() != "":
-        return ["askproof/SKILL.md must have a blank line between frontmatter and # AskProof"]
-    if len(lines) <= len(SKILL_FRONTMATTER) + 1 or lines[len(SKILL_FRONTMATTER) + 1].strip() != "# AskProof":
-        return ["askproof/SKILL.md body must start with # AskProof after frontmatter"]
-    return []
+    problems: list[str] = []
+    if not lines:
+        return ["askproof/SKILL.md:1 file is empty"]
+    if lines[0] != "---":
+        problems.append("askproof/SKILL.md:1 first line must be exactly ---")
+    if len(lines) < len(SKILL_FRONTMATTER):
+        problems.append("askproof/SKILL.md:1 frontmatter is incomplete")
+        return problems
+
+    for index, expected in enumerate(SKILL_FRONTMATTER, start=1):
+        actual = lines[index - 1] if index - 1 < len(lines) else ""
+        if actual != expected:
+            problems.append(f"askproof/SKILL.md:{index} expected {expected!r}, got {actual!r}")
+
+    closing_line = len(SKILL_FRONTMATTER)
+    if lines[closing_line - 1] != "---":
+        problems.append(f"askproof/SKILL.md:{closing_line} frontmatter closing line must be exactly ---")
+    if len(lines) <= closing_line or lines[closing_line].strip() != "":
+        problems.append(f"askproof/SKILL.md:{closing_line + 1} must be blank between frontmatter and # AskProof")
+    if len(lines) <= closing_line + 1 or lines[closing_line + 1].strip() != "# AskProof":
+        problems.append(f"askproof/SKILL.md:{closing_line + 2} body must start with # AskProof")
+    return problems
 
 
 def check_markdown_links(root: Path) -> list[str]:
@@ -246,14 +297,23 @@ def main() -> int:
         parser.error(f"Root does not exist: {root}")
 
     problems: list[str] = []
+    warnings: list[str] = []
     problems.extend(check_required(root))
     problems.extend(check_gitignore(root))
     problems.extend(check_forbidden_files(root))
     problems.extend(check_secret_markers(root))
-    problems.extend(check_markdown_multiline(root))
+    markdown_problems, markdown_warnings = check_markdown_format(root)
+    problems.extend(markdown_problems)
+    warnings.extend(markdown_warnings)
     problems.extend(check_skill_frontmatter(root))
     problems.extend(check_markdown_links(root))
     problems.extend(check_skill_references(root))
+
+    if warnings:
+        print("AskProof doctor warnings:\n")
+        for warning in warnings:
+            print(f"- {warning}")
+        print()
 
     if problems:
         print("AskProof doctor found problems:\n")

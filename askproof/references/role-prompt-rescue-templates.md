@@ -2,7 +2,8 @@
 
 Use these templates when the user’s role is clear or implied.
 
-Do not force the user to provide technical evidence first. Start with the role’s natural language and ask for the minimum useful proof.
+Do not force the user to provide technical evidence first. Start with the role’s natural language
+and ask for the minimum useful proof.
 
 ## Product Manager
 

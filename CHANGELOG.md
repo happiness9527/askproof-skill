@@ -2,6 +2,15 @@
 
 All notable changes to AskProof will be documented in this file.
 
+## [0.1.2] - 2026-05-02
+
+### Fixed
+
+- Rewrote README, docs, references, examples, and Skill files as true multi-line Markdown.
+- Fixed `askproof/SKILL.md` YAML frontmatter so Skill metadata is parseable.
+- Improved `doctor.py` to detect compressed Markdown lines and invalid Skill frontmatter.
+- Added stricter checks for long lines, malformed headings, and non-standard Skill metadata.
+
 ## [0.1.1] - 2026-05-02
 
 ### Added

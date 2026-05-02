@@ -9,7 +9,9 @@ metadata:
 
 AskProof is an AI acceptance and follow-up Skill for non-engineers.
 
-Use it when the user asks whether an AI agent really finished work, says vague feedback like “still broken”, cannot understand an AI report or error, needs minimum evidence, is drifting into new scope before verification, or wants a handoff for a new chat, model, platform, or agent.
+Use it when the user asks whether an AI agent really finished work, says vague feedback like
+“still broken”, cannot understand an AI report or error, needs minimum evidence, is drifting into
+new scope before verification, or wants a handoff for a new chat, model, platform, or agent.
 
 ## Core Rules
 

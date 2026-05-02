@@ -2,7 +2,8 @@
 
 These patterns help AskProof respond to “AI says fixed” claims from common AI agent tools.
 
-Use fictional project names and sanitized details. Do not assume that any platform’s summary equals verification.
+Use fictional project names and sanitized details. Do not assume that any platform’s summary equals
+verification.
 
 ## Cursor
 

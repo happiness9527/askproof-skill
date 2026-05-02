@@ -2,7 +2,8 @@
 
 You do not need to learn commands.
 
-Use AskProof when an AI agent says something that sounds finished, but you are not sure whether to trust it.
+Use AskProof when an AI agent says something that sounds finished, but you are not sure whether to
+trust it.
 
 ## Say This
 

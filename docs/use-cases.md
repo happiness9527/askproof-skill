@@ -39,7 +39,8 @@ See [Example Gallery](example-gallery.md).
 
 ## 8. Role-Specific Prompt Rescue
 
-Use AskProof when product managers, designers, operations teams, or content creators give vague but natural feedback.
+Use AskProof when product managers, designers, operations teams, or content creators give vague but
+natural feedback.
 
 Examples:
 

@@ -2,7 +2,8 @@
 
 This guide is for users who do not use Git and do not know where AI tools store Skills.
 
-AskProof is a local Skill folder. You only need to download the project, find the `askproof/` folder, and copy it into the Skill folder used by your AI tool.
+AskProof is a local Skill folder. You only need to download the project, find the `askproof/`
+folder, and copy it into the Skill folder used by your AI tool.
 
 ## 1. Download AskProof From GitHub
 
@@ -34,7 +35,8 @@ askproof/
 
 That is the Skill folder you need to install.
 
-Do not copy only `SKILL.md`. Copy the whole `askproof/` folder, because it also contains references, examples, and helper scripts.
+Do not copy only `SKILL.md`. Copy the whole `askproof/` folder, because it also contains references,
+examples, and helper scripts.
 
 ## 3. Copy It To Your AI Tool’s Skill Folder
 

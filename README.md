@@ -6,9 +6,11 @@ AI agents often say “done”, “fixed”, or “should work now”.
 
 But if you are not an engineer, how do you know whether it is actually done?
 
-AskProof helps non-engineers check what the AI did, what evidence is missing, what is still unverified, and what to ask next.
+AskProof helps non-engineers check what the AI did, what evidence is missing, what is still
+unverified, and what to ask next.
 
 AI agents summarize what they did.
+
 AskProof helps you decide whether you can trust it.
 
 AskProof does not ask you to become an engineer. It gives you better acceptance questions.
@@ -17,7 +19,8 @@ AskProof does not ask you to become an engineer. It gives you better acceptance 
 
 AskProof is an AI acceptance and follow-up Skill for non-engineers.
 
-It helps you review an AI agent’s “done” message and turn vague feedback like “still broken” or “continue” into a clear prompt that asks for proof, minimum evidence, and a safer next step.
+It helps you review an AI agent’s “done” message and turn vague feedback like “still broken” or
+“continue” into a clear prompt that asks for proof, minimum evidence, and a safer next step.
 
 AskProof helps non-engineers ask AI agents for the right proof before trusting “done”.
 
@@ -46,7 +49,8 @@ Common weak summaries include:
 - “The issue has been resolved.”
 - “I updated the code and everything is ready.”
 
-These may mean the AI changed files. They do not automatically mean the result was tested, verified, or safe to continue building on.
+These may mean the AI changed files. They do not automatically mean the result was tested, verified,
+or safe to continue building on.
 
 AskProof separates:
 
@@ -62,7 +66,8 @@ AskProof does not replace your tests, CI, PR review, or verification tools.
 
 It helps non-engineers ask better follow-up questions when AI agents claim work is done.
 
-Other tools may help an agent submit verification evidence. AskProof helps the human user ask for that evidence, understand it, and avoid being carried along by confident but unproven AI summaries.
+Other tools may help an agent submit verification evidence. AskProof helps the human user ask for
+that evidence, understand it, and avoid being carried along by confident but unproven AI summaries.
 
 ## Core Features
 
@@ -91,7 +96,9 @@ Examples of weak feedback:
 - “fix it yourself”
 - “don’t make bugs”
 
-AskProof explains why the feedback is inefficient and rewrites it into a prompt that asks the AI to restate the failure, list what changed, request minimum evidence, avoid blind refactors, and define the next verification step.
+AskProof explains why the feedback is inefficient and rewrites it into a prompt that asks the AI to
+restate the failure, list what changed, request minimum evidence, avoid blind refactors, and define
+the next verification step.
 
 ### 3. Evidence Ladder
 
@@ -119,13 +126,15 @@ AskProof explains AI technical reports in plain language:
 
 ### 5. Drift Guard
 
-When the task keeps expanding before the previous result is verified, AskProof warns you to slow down and close the loop first.
+When the task keeps expanding before the previous result is verified, AskProof warns you to slow
+down and close the loop first.
 
 It helps you decide whether to continue, stop, verify, or create a handoff note.
 
 ### 6. Handoff Memory
 
-When the chat is too long or you want to switch models, tools, or platforms, AskProof creates a handoff note with:
+When the chat is too long or you want to switch models, tools, or platforms, AskProof creates a
+handoff note with:
 
 - current goal
 - completed work
@@ -265,7 +274,8 @@ Please continue from this handoff. Do not add new features until you verify that
 
 ## Installation
 
-For Codex-style local skills, copy the `askproof/` directory into your skills directory, then restart or reload your agent environment.
+For Codex-style local skills, copy the `askproof/` directory into your skills directory, then
+restart or reload your agent environment.
 
 See [docs/install.md](docs/install.md) for step-by-step instructions.
 
@@ -291,4 +301,5 @@ MIT. See [LICENSE](LICENSE).
 
 ## Star
 
-If AskProof helps you avoid blindly trusting “done”, consider starring the repo so more non-engineers can find it.
+If AskProof helps you avoid blindly trusting “done”, consider starring the repo so more
+non-engineers can find it.
