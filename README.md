@@ -154,6 +154,18 @@ Optional advanced commands are also supported:
 - `/askproof drift-guard`
 - `/askproof handoff`
 
+## Example Gallery
+
+AskProof includes realistic but fictional examples for common AI agent workflows:
+
+- Cursor says it fixed a UI bug.
+- Claude Code reports edits but skips tests.
+- Codex runs a technical check that may not prove the user-facing issue.
+- A domestic agent platform says “已修复并重新部署”.
+- Product managers, designers, operations teams, and content creators give vague feedback that needs Prompt Rescue.
+
+See [docs/example-gallery.md](docs/example-gallery.md).
+
 ## Example: AI Says “Fixed”
 
 User:
@@ -264,4 +276,3 @@ It does not include integrations, a UI, background services, PR bots, or automat
 ## License
 
 MIT. See [LICENSE](LICENSE).
-

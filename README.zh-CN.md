@@ -164,6 +164,18 @@ AskProof 不会假设你懂日志。
 - `/askproof drift-guard`
 - `/askproof handoff`
 
+## 场景样例库
+
+AskProof 已包含一组真实但虚构化的常见 Agent 场景：
+
+- Cursor 说修好了一个界面 bug；
+- Claude Code 说明改了文件，但跳过了测试；
+- Codex 运行了技术检查，但不一定证明用户问题已修好；
+- 国内 Agent 平台说“已修复并重新部署”；
+- 产品经理、设计师、运营、内容创作者给出了需要救援的模糊反馈。
+
+见 [docs/example-gallery.md](docs/example-gallery.md)。
+
 ## 示例：AI 说“修好了”
 
 用户：
@@ -281,4 +293,3 @@ V0.1 只聚焦：
 ## 开源协议
 
 MIT。见 [LICENSE](LICENSE)。
-

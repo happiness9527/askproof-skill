@@ -100,9 +100,10 @@ Load reference files only when needed:
 - `references/intent-router.md` for routing ambiguous user messages.
 - `references/output-templates.md` for response templates.
 - `references/done-check-rules.md` for completion claims.
+- `references/platform-done-check-patterns.md` for Cursor, Claude Code, Codex, and domestic agent platform completion claims.
 - `references/prompt-rescue-rules.md` for vague feedback rewrites.
+- `references/role-prompt-rescue-templates.md` for product manager, designer, operations, and content creator feedback rewrites.
 - `references/evidence-ladder.md` for minimum evidence guidance.
 - `references/drift-guard-rules.md` for scope drift warnings.
 - `references/handoff-memory-rules.md` for handoff documents.
 - `references/project-profile-template.md` for optional project context.
-
