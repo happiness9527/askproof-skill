@@ -6,6 +6,9 @@ All notable changes to AskProof will be documented in this file.
 
 ### Added
 
+- Skill UI metadata in `askproof/agents/openai.yaml`.
+- AI acceptance checklist and copy-ready prompt library for non-engineers.
+- Drift Guard example for scope expansion before verification.
 - Platform-specific Done Check examples for Cursor, Claude Code, Codex, and domestic agent platforms.
 - Role-specific Prompt Rescue templates for product managers, designers, operations, and content creators.
 - Example gallery documentation linking the new fictional scenarios.

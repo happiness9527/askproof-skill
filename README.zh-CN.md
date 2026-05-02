@@ -176,6 +176,13 @@ AskProof 已包含一组真实但虚构化的常见 Agent 场景：
 
 见 [docs/example-gallery.md](docs/example-gallery.md)。
 
+## 可直接复制的清单和 Prompt
+
+如果你只想快速知道下一步怎么做：
+
+- 先看 [AI 验收清单](docs/acceptance-checklist.md)，判断能不能相信“已完成”。
+- 再看 [Prompt 库](docs/prompt-library.md)，复制一句发给 AI。
+
 ## 示例：AI 说“修好了”
 
 用户：

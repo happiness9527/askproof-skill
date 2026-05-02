@@ -45,3 +45,8 @@ I am opening a new chat. Create a handoff.
 
 AskProof will create a compact handoff for the next AI.
 
+## Useful Links
+
+- [AI Acceptance Checklist](acceptance-checklist.md)
+- [Prompt Library](prompt-library.md)
+- [Example Gallery](example-gallery.md)

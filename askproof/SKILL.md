@@ -99,6 +99,7 @@ Load reference files only when needed:
 
 - `references/intent-router.md` for routing ambiguous user messages.
 - `references/output-templates.md` for response templates.
+- `references/acceptance-checklists.md` for quick trust, proof, and stop-or-continue checks.
 - `references/done-check-rules.md` for completion claims.
 - `references/platform-done-check-patterns.md` for Cursor, Claude Code, Codex, and domestic agent platform completion claims.
 - `references/prompt-rescue-rules.md` for vague feedback rewrites.

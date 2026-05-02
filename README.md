@@ -166,6 +166,13 @@ AskProof includes realistic but fictional examples for common AI agent workflows
 
 See [docs/example-gallery.md](docs/example-gallery.md).
 
+## Copy-Ready Checklists And Prompts
+
+If you only need the fastest next step:
+
+- Use the [AI Acceptance Checklist](docs/acceptance-checklist.md) before trusting “done”.
+- Use the [Prompt Library](docs/prompt-library.md) when you need a sentence to send to an AI agent.
+
 ## Example: AI Says “Fixed”
 
 User:

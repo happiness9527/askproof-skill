@@ -1,0 +1,9 @@
+interface:
+  display_name: "AskProof"
+  short_description: "Ask AI agents for proof before trusting done."
+  brand_color: "#2563EB"
+  default_prompt: "Use $askproof to check whether this AI agent result is actually verified and tell me what to ask next."
+
+policy:
+  allow_implicit_invocation: true
+

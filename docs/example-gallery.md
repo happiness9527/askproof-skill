@@ -98,3 +98,14 @@ Better AskProof direction:
 请先按运营执行链路说明触发条件、输入数据、失败步骤、预期结果和需要我提供的最小证据。
 ```
 
+## Drift Guard Example
+
+Use when a user wants to add new features before the current fix is verified.
+
+Read: [Drift Guard Example](../askproof/examples/drift-guard-example.md)
+
+Acceptance focus:
+
+- Is the original result verified?
+- Will new features depend on unverified behavior?
+- Should the next step be proof, handoff, or scope split?
