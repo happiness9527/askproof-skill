@@ -124,3 +124,16 @@ Acceptance focus:
 - Is the original result verified?
 - Will new features depend on unverified behavior?
 - Should the next step be proof, handoff, or scope split?
+
+## Reply Confirmation Prompt Example
+
+Use when an AI agent has replied and the user needs the next structured prompt to send back.
+
+Read: [Reply Confirmation Prompt Example](../askproof/examples/reply-confirmation-prompt-example.md)
+
+Acceptance focus:
+
+- Does the prompt preserve the current goal and status?
+- Does it prevent blind continuation?
+- Does it require evidence before treating the work as verified?
+- Does it tell the agent what to output at the end?

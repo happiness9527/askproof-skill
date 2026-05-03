@@ -137,6 +137,87 @@ AI 提供的证据：
 <copy-ready prompt>
 ```
 
+## Reply Confirmation Prompt Template
+
+Use this when the user pastes an AI agent reply and wants the next structured prompt to send back.
+Reply Confirmation Prompt is the workflow that produces the next copy-ready structured prompt.
+This is not background automation. It runs when the user invokes AskProof after an agent reply or
+pastes that reply into the chat.
+
+```text
+当前判断：Reply Confirmation Prompt｜回复后确认 Prompt
+
+回复后确认 Prompt
+
+1. 当前目标
+<用普通话复述用户真正要推进的目标>
+
+2. 当前状态
+<基于 AI 回复说明现在推进到哪里；不确定就写“未确认”>
+
+3. Agent 本轮声称完成 / 修改 / 判断了什么
+- <agent claim from the reply>
+
+4. 从 Agent 回复里能确认什么
+- <confirmed from the reply>
+
+5. 仍未确认 / 缺少哪些证据
+- <unconfirmed item or missing evidence>
+
+6. 做之前必须先注意什么
+- <before-continuing check or warning>
+
+7. 本次要求 Agent 怎么做
+- <specific requirement>
+
+8. 约束和不要做什么
+- 不要编造验证结果。
+- 不要把“已修改”当成“已验证”。
+- 不要在没有验证前继续扩功能。
+
+9. 验收要求
+- <proof, command, screenshot, recording, or acceptance evidence required>
+
+10. 最后必须输出什么
+- 已修改
+- 已验证
+- 未验证
+- 风险
+- 下一步最稳妥动作
+
+11. 可直接复制给 Agent 的 Prompt
+请基于当前上下文继续，但先不要扩展新功能。
+
+当前目标：
+<goal>
+
+当前状态：
+<status>
+
+本次你需要先确认：
+1. <confirmation point>
+2. <confirmation point>
+
+本次执行要求：
+1. <specific action>
+2. <specific action>
+
+约束：
+- 不要编造验证结果。
+- 不要把“已修改”当成“已验证”。
+- 不要做与当前目标无关的重构或扩展。
+
+最后请输出：
+1. 你实际做了什么；
+2. 你如何验证；
+3. 验证结果是什么；
+4. 还有哪些未验证或有风险；
+5. 下一步建议。
+
+你现在最应该问 AI 的一句话：
+<one compact self-contained prompt>
+```
+
 ## Minimum Acceptance Path
 
 Use this when the user needs a concrete way to accept the result.

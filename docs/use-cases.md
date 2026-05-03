@@ -24,7 +24,25 @@ Use AskProof to stop drift and return to the original acceptance goal.
 
 Use AskProof to create a handoff note that preserves goal, status, risks, and the next prompt.
 
-## 7. Platform-Specific “Fixed” Claims
+## 7. AI Replied, But The User Needs A Better Next Prompt
+
+Use AskProof to turn the latest AI reply into a structured Reply Confirmation Prompt.
+
+Reply Confirmation Prompt is the workflow that produces the next copy-ready structured prompt.
+
+This is user-invoked. AskProof does not automatically listen to every Codex, Claude Code, Cursor,
+or other agent reply.
+
+The prompt should preserve:
+
+- current goal
+- current status
+- what must be confirmed before continuing
+- required proof
+- execution constraints
+- expected final output
+
+## 8. Platform-Specific “Fixed” Claims
 
 Use AskProof when Cursor, Claude Code, Codex, or a domestic AI agent platform says work is fixed.
 
@@ -37,7 +55,7 @@ AskProof should still ask:
 
 See [Example Gallery](example-gallery.md).
 
-## 8. Role-Specific Prompt Rescue
+## 9. Role-Specific Prompt Rescue
 
 Use AskProof when product managers, designers, operations teams, or content creators give vague but
 natural feedback.

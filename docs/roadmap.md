@@ -4,19 +4,23 @@
 
 - Skill instructions.
 - English and Chinese README files.
-- Six focused workflows.
+- Focused acceptance and follow-up workflows.
 - References and templates.
 - Fictional examples and demo files.
 - Lightweight local memory scripts.
 
-## V0.2 Ideas
+## V0.2.x Patch Ideas
+
+V0.2.0 established the structured AI acceptance workflow. V0.2.1-style patches should polish that
+workflow without adding UI, integrations, background services, or automatic listeners.
 
 - More bilingual examples.
 - A small example gallery by user role.
 - Better handoff templates for design, content, and operations workflows.
 - More acceptance prompt patterns for common AI coding tools.
+- Reply Confirmation Prompt polish for turning agent replies into clear next-step prompts.
 
-## Not Planned For V0.1
+## Not Planned In The Near Term
 
 - Feishu/Lark integration.
 - Notion integration.
@@ -29,4 +33,3 @@
 - Complex permissions.
 - Real automatic test executor.
 - PR Review Bot.
-

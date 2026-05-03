@@ -19,6 +19,37 @@ Route here when the message includes an AI completion claim:
 
 Primary question: “Can I trust this?”
 
+## Reply Confirmation Prompt
+
+Route here when the user invokes AskProof after an agent reply or pastes an agent reply and wants
+the next structured message to send back.
+
+Trigger phrases include:
+
+- what should I send next
+- turn this into a prompt for Codex
+- make this into a follow-up prompt
+- help me confirm with the AI
+- 基于这段回复，下一句该怎么问
+- 帮我整理成发给 AI 的 Prompt
+- 帮我写一段给 Claude Code / Codex 的确认提示
+- 这轮 AI 回复后，我该怎么让它继续
+
+Primary question: “How do I confirm status, constrain the next step, and ask for proof without
+losing context?”
+
+Behavior:
+
+1. Restate the current goal and current status in plain language.
+2. Use only the AI reply and user-provided context; mark unknowns as unconfirmed.
+3. Convert the next action into a structured, copy-ready prompt.
+4. Include before-continuing checks, requirements, constraints, proof needed, acceptance
+   requirements, and final output expectations.
+5. If the AI claims completion, include Done Check inside the prompt instead of treating the claim
+   as verified.
+6. Do not claim automatic monitoring, automatic cross-platform reading, automatic testing, or
+   automatic verification.
+
 ## Same-Agent Verification Mode
 
 Route here when all of these are true:
@@ -130,8 +161,9 @@ If multiple intents appear, choose the one that protects the user from the large
 
 1. If a handoff is requested, create Handoff Memory.
 2. If the user asks the current agent to inspect the current repo or runtime, use Same-Agent Verification Mode.
-3. If the AI claims done without proof, use Done Check.
-4. If the user only says “still broken” or “continue”, use Prompt Rescue.
-5. If the user lacks evidence, use Evidence Ladder.
-6. If scope is expanding without verification, use Drift Guard.
-7. If the user asks what something means, use Explain.
+3. If the user explicitly asks for the next message to send to AI, use Reply Confirmation Prompt.
+4. If the AI claims done without proof, use Done Check.
+5. If the user only says “still broken” or “continue”, use Prompt Rescue.
+6. If the user lacks evidence, use Evidence Ladder.
+7. If scope is expanding without verification, use Drift Guard.
+8. If the user asks what something means, use Explain.

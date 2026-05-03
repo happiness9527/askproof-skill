@@ -12,6 +12,7 @@ AskProof first decides whether the user needs:
 - Explain
 - Drift Guard
 - Handoff Memory
+- Reply Confirmation Prompt
 
 ## 2. Separate Changed From Verified
 
@@ -35,6 +36,15 @@ error line, or plain-language symptom.
 
 The final output always gives the user one sentence or compact prompt to send to the AI.
 
+For longer agent replies, AskProof can produce a Reply Confirmation Prompt. This prompt preserves
+the current goal, current status, proof requirements, constraints, and required final output so the
+next AI message stays focused.
+
+Reply Confirmation Prompt is the workflow that produces the next copy-ready structured prompt.
+
+AskProof does not automatically listen to every agent reply. It works when the user invokes
+AskProof after a reply, or pastes the reply into the chat and asks what to send next.
+
 ## 5. Optional Local Memory
 
 AskProof can help generate local handoff and progress memory under:
@@ -44,4 +54,3 @@ docs/askproof-memory/
 ```
 
 It should not write memory silently. Generate the content first, then ask the user to confirm.
-

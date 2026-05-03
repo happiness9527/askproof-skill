@@ -11,7 +11,8 @@ AskProof is an AI acceptance and follow-up Skill for non-engineers.
 
 Use it when the user asks whether an AI agent really finished work, says vague feedback like
 “still broken”, cannot understand an AI report or error, needs minimum evidence, is drifting into
-new scope before verification, or wants a handoff for a new chat, model, platform, or agent.
+new scope before verification, wants a handoff for a new chat, model, platform, or agent, or needs
+the next structured prompt to send after an AI agent reply.
 
 ## Core Rules
 
@@ -28,12 +29,19 @@ new scope before verification, or wants a handoff for a new chat, model, platfor
 11. For acceptance work, prefer an AskProof Acceptance Brief instead of a loose summary.
 12. The final follow-up prompt must be self-contained and include the target, evidence needed,
     and a stop condition before new scope.
+13. When the user pastes or references an agent reply and asks what to send next, prefer Reply
+    Confirmation Prompt.
+14. Reply Confirmation Prompt output must include one complete copy-ready prompt, not only
+    suggestions.
+15. The copy-ready prompt must be self-contained enough to paste into Codex, Claude Code, Cursor,
+    or another agent without extra context.
 
 ## Intent Routing
 
 Choose the most useful mode from the user’s message:
 
 - **Done Check**: AI claims work is complete or fixed.
+- **Reply Confirmation Prompt**: user wants a structured next prompt after an AI agent reply.
 - **Same-Agent Verification Mode**: the current AI agent can inspect the project and the user asks
   whether the current work is really fixed or complete.
 - **Prompt Rescue**: user gives vague feedback or asks for a better prompt.
@@ -50,6 +58,7 @@ Optional commands:
 - `/askproof explain`
 - `/askproof drift-guard`
 - `/askproof handoff`
+- `/askproof confirm`
 
 ## Required Response Shape
 
@@ -78,6 +87,24 @@ AskProof Acceptance Brief
 7. 当前状态：已修改 / 部分验证 / 已验证 / 不建议继续
 8. 最小验收动作
 9. 下一句该怎么问 AI
+```
+
+For Reply Confirmation Prompt, use this structure when useful:
+
+```text
+回复后确认 Prompt
+
+1. 当前目标
+2. 当前状态
+3. Agent 本轮声称完成 / 修改 / 判断了什么
+4. 从 Agent 回复里能确认什么
+5. 仍未确认 / 缺少哪些证据
+6. 做之前必须先注意什么
+7. 本次要求 Agent 怎么做
+8. 约束和不要做什么
+9. 验收要求
+10. 最后必须输出什么
+11. 可直接复制给 Agent 的 Prompt
 ```
 
 End every response with this exact label:

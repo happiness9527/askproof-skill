@@ -46,6 +46,21 @@ I am opening a new chat. Create a handoff.
 
 AskProof will create a compact handoff for the next AI.
 
+## If The AI Replied But You Do Not Know What To Say Next
+
+Say:
+
+```text
+Turn this AI reply into the next prompt I should send.
+```
+
+AskProof will create a structured Reply Confirmation Prompt with the current goal, current status,
+what must be checked before continuing, constraints, proof needed, and the final output expected
+from the AI.
+
+AskProof does not automatically listen to agent replies. Use this when you invoke AskProof after a
+reply or paste the reply into the chat.
+
 ## Useful Links
 
 - [AI Acceptance Checklist](acceptance-checklist.md)

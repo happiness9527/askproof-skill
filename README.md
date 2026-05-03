@@ -31,6 +31,15 @@ tools. It helps you understand what the AI did, check whether the claim is belie
 vague feedback like “still broken”, “continue”, or “fix it yourself” into a prompt that asks for
 proof.
 
+AskProof can turn an agent’s latest reply into the next clear, self-contained prompt with current
+goal, current status, constraints, proof requirements, and final output expectations.
+
+Core path:
+
+```text
+Agent reply -> AskProof checks current status -> AskProof generates the next structured prompt -> user sends it back to the agent
+```
+
 ## Try It in 30 Seconds
 
 **The AI says:**
@@ -106,6 +115,7 @@ AskProof helps non-engineers ask AI agents for the right proof before trusting �
 It can help you:
 
 - check whether “done” is actually verified
+- turn an AI reply into a structured confirmation prompt for the next agent message
 - identify missing evidence before continuing
 - rewrite vague feedback into an actionable prompt
 - ask for the easiest useful evidence when you do not know what to provide
@@ -145,6 +155,11 @@ automatic test runner.
 - **Self-contained follow-up prompts**: includes the feature name, target, evidence needed, and a
   stop condition before expanding scope.
 - **Minimum Acceptance Path**: gives the smallest practical path to verify the current result.
+- **Reply Confirmation Prompt**: turns an AI reply into a copy-ready prompt that confirms current
+  goal, current status, constraints, required proof, and final output expectations.
+
+Reply Confirmation Prompt is not background automation. It works when the user invokes AskProof
+after an agent reply or pastes the reply into the chat and asks what to send next.
 
 ## Try It Without Installing
 
@@ -187,6 +202,7 @@ After installation, you can also write naturally:
 - “I am opening a new chat. Create a handoff.”
 - “What did this round actually do?”
 - “What should I ask the AI now?”
+- “Turn this AI reply into the next prompt I should send.”
 
 Advanced users can still use optional commands:
 
@@ -196,6 +212,7 @@ Advanced users can still use optional commands:
 - `/askproof explain`
 - `/askproof drift-guard`
 - `/askproof handoff`
+- `/askproof confirm`
 
 ## Ask Claude Code / Codex To Install It
 
@@ -227,6 +244,8 @@ If your AI tool does not support Skills, ask it to explain the closest supported
 copying files.
 
 ## Core Features
+
+The two most common entry points are Done Check and Reply Confirmation Prompt.
 
 ### 1. Done Check
 
@@ -302,6 +321,26 @@ handoff note with:
 - next prompt
 - mistakes to avoid repeating
 
+### 7. Reply Confirmation Prompt
+
+When an AI agent finishes a turn and you are unsure how to respond, AskProof can turn that reply
+into a structured prompt for the next step.
+
+It keeps the next message clear:
+
+- current goal
+- current status
+- what the agent claimed
+- what remains unverified
+- before continuing
+- requirements
+- constraints
+- acceptance requirements
+- final output
+
+It only works when you ask AskProof to do this or paste the agent reply. It does not automatically
+listen to Codex, Claude Code, Cursor, or other agent tools.
+
 ## Common Use Cases
 
 AskProof is useful when:
@@ -314,6 +353,7 @@ AskProof is useful when:
 - a designer sees the UI still looks off but cannot describe it in engineering terms
 - an operator wants an automation fixed without blindly approving another rewrite
 - a creator or education product owner needs a handoff before opening a new chat
+- a user has an agent reply and needs the next structured prompt to send back
 
 See the [example gallery](docs/example-gallery.md) for more fictional but realistic cases.
 
@@ -426,6 +466,65 @@ Next prompt:
 Please continue from this handoff. Do not add new features until you verify that the PDF export button downloads a PDF with the correct invoice total.
 ```
 
+## Example 6: Turn An AI Reply Into The Next Prompt
+
+User:
+
+> The AI said it changed auth.py and the login flow should work now. I want to ask Codex what to do
+> next, but I do not want it to blindly continue.
+
+AskProof:
+
+```text
+Current scenario: Reply Confirmation Prompt
+
+Current goal:
+Verify whether the login failure is really fixed.
+
+Current status:
+The AI claims it changed auth.py, but no verification result is visible.
+
+What the agent claimed:
+- It changed auth.py.
+- It updated the login flow.
+- It believes the login flow should work now.
+
+What remains unverified:
+- Whether the original login failure is gone.
+- Whether the login flow was actually run.
+- Whether there is a test result, log, screenshot, or manual acceptance result.
+
+Copy this prompt:
+Please continue from the current login fix, but do not add new features yet.
+
+Current goal:
+Confirm whether the login failure is actually fixed.
+
+Current status:
+You said auth.py was changed and the login flow should work, but I have not seen proof yet.
+
+Before continuing, please confirm:
+1. What exact login problem you fixed.
+2. What files or behavior changed.
+3. Whether you ran or manually checked the login flow.
+
+Requirements:
+1. If you verified it, show the command, screenshot, log, or exact manual steps and result.
+2. If you did not verify it, mark it as unverified.
+3. Do not expand scope before this login fix is accepted.
+
+Constraints:
+- Do not invent verification results.
+- Do not treat “code changed” as “feature verified”.
+- Do not refactor unrelated login code before proving the current fix.
+
+Acceptance requirements:
+- Provide a passing login check with command output, screenshot, log, or reproducible manual steps.
+
+Final output:
+List changed, verified, unverified, risk, and the safest next action.
+```
+
 ## How It Differs From Verification Tools
 
 AskProof does not replace your tests, CI, PR review, or verification tools.
@@ -496,6 +595,7 @@ V0.2 focuses on structured acceptance:
 - Same-Agent Verification Mode
 - self-contained follow-up prompts
 - Minimum Acceptance Path
+- Reply Confirmation Prompt
 
 ## License
 

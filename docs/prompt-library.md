@@ -26,6 +26,12 @@ These prompts are designed for non-engineers. Copy one and send it to your AI ag
 请先停止新增功能，回到原目标。请列出上一轮已修改内容、已验证内容、未验证内容和当前风险。只有当原目标通过验收后，再讨论新功能。
 ```
 
+## When An AI Reply Needs A Better Next Prompt
+
+```text
+请基于上一条 AI 回复，帮我整理成下一条可以直接发回给 AI 的确认 Prompt。必须包含：当前目标、当前状态、Agent 本轮声称完成 / 修改 / 判断了什么、从回复里能确认什么、仍未确认 / 缺少哪些证据、做之前必须注意什么、本次执行要求、约束和不要做什么、验收要求、最后必须输出什么。不要把“已修改”当成“已验证”。
+```
+
 ## When Opening A New Chat
 
 ```text
@@ -49,4 +55,3 @@ These prompts are designed for non-engineers. Copy one and send it to your AI ag
 ```text
 请先不要大范围改自动化流程。请按运营执行链路复述：触发条件是什么、输入数据是什么、哪一步失败、成功时应该出现什么结果、上一轮修改了哪里、现在需要我提供的最小证据是什么。请先定位失败环节，再提出最小修复。
 ```
-

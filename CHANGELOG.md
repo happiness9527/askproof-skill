@@ -2,6 +2,39 @@
 
 All notable changes to AskProof will be documented in this file.
 
+## [0.2.1] - 2026-05-03
+
+### Added
+
+- Strengthened Reply Confirmation Prompt as a core AskProof workflow after v0.2.0.
+- Clarified that AskProof does not automatically monitor agent replies.
+- Added stronger copy-ready next-prompt structure for Codex / Claude Code style workflows.
+- Added and linked a Reply Confirmation Prompt example.
+
+## [0.2.0] - 2026-05-02
+
+### Added
+
+- Added the AskProof Acceptance Brief for structured AI acceptance results.
+- Added Evidence Type classification for code, log, visual, user acceptance, and reproducible evidence.
+- Added Same-Agent Verification Mode for cases where the current agent can inspect project evidence.
+- Added Minimum Acceptance Path guidance for practical non-engineer verification.
+- Added a fictional Same-Agent Verification example.
+
+### Changed
+
+- Updated Skill instructions and output templates for structured acceptance workflows.
+- Updated README files with v0.2 capability summaries.
+- Strengthened follow-up prompt rules so “code changed” is not treated as “feature verified”.
+
+## [0.1.4] - 2026-05-02
+
+### Changed
+
+- Improved English and Chinese README onboarding for non-engineers.
+- Added clearer README navigation and early demo-oriented guidance.
+- Clarified README trial and installation paths without changing the project positioning.
+
 ## [0.1.3] - 2026-05-02
 
 ### Fixed
